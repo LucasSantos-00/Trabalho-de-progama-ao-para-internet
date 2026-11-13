@@ -1,0 +1,26 @@
+<!-- partial:navbar -->
+<app-navbar></app-navbar>
+<!-- partial -->
+
+<main appResizeBroadcast>
+  @if (isLoading) {
+    <div class="spinner-wrapper">
+      <div class="spinner">Carregando...</div>
+    </div>
+  } @else {
+    <router-outlet></router-outlet>
+  }
+</main>
+
+<!-- partial:footer -->
+<app-footer></app-footer>
+<!-- partial -->
+
+<!-- Botão flutuante para descida -->
+<a
+  href="#servicos"
+  class="btn-flutuante"
+  [class.escondido]="isScrolled"
+  title="Ir para Serviços"
+>↓</a>
+

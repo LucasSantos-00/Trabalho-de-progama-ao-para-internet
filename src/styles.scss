@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Estilos principais da Oficina Serra (estrutura modular SCSS idêntica ao CEM)
+@import "./styles/styles.scss";
+
+/* =============================================
+   Global Print Styles
+   ============================================= */
+@media print {
+  header,
+  footer,
+  app-navbar,
+  app-footer,
+  .btn-flutuante {
+    display: none !important;
+  }
+
+  body, html {
+    background-color: white !important;
+    color: black !important;
+  }
+}
+

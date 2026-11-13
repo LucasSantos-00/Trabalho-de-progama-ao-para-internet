@@ -1,0 +1,98 @@
+/* ================================
+   FORMULÁRIO - ESTILOS DO COMPONENTE
+================================ */
+
+.formulario-section {
+  background-color: #111111;
+  color: white;
+  padding: 40px 0; /* Preenchimento menor para otimizar espaço */
+}
+
+.formulario-section .titulo {
+  color: white;
+  margin-bottom: 5px; /* Título mais próximo do subtítulo */
+}
+
+.formulario-section .subtitulo {
+  color: #aaaaaa;
+  margin-bottom: 25px; /* Subtítulo mais próximo do formulário */
+}
+
+form {
+  background-color: #1f1f1f;
+  padding: 40px;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-weight: bold;
+  margin-bottom: 7px;
+  color: #f0f0f0;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  padding: 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: inherit;
+  background-color: #2b2b2b;
+  color: white;
+  transition: outline 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: #888;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: #e63946;
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.25);
+}
+
+.campo-completo {
+  grid-column: 1 / -1;
+}
+
+form .botao {
+  width: fit-content;
+  margin-top: 10px;
+}
+
+form .botao:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* RESPONSIVIDADE FORMULÁRIO */
+@media (max-width: 600px) {
+  form {
+    grid-template-columns: 1fr;
+    padding: 25px;
+  }
+
+  .campo-completo {
+    grid-column: auto;
+  }
+
+  form .botao {
+    width: 100%;
+  }
+}
+

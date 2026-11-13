@@ -1,0 +1,29 @@
+/* ================================
+   CONFIGURAÇÕES GERAIS
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family-base;
+  background-color: $body-bg; /* Evita vazamento de fundo branco no fim da página */
+  color: $body-color;
+  line-height: $line-height-base;
+}
+
+app-root,
+app-base,
+app-home,
+app-formulario,
+app-footer {
+  display: block;
+}
+

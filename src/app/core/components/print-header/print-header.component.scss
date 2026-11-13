@@ -1,0 +1,12 @@
+.print-only-header {
+  display: none;
+
+  @media print {
+    display: block;
+    text-align: center;
+    border-bottom: 2px solid #111;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+}
+

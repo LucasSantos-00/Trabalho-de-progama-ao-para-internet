@@ -1,0 +1,63 @@
+/* ================================
+   BOTÕES
+================================ */
+
+.botao {
+  display: inline-block;
+
+  background-color: #e63946;
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 13px 25px;
+
+  text-decoration: none;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.botao:hover {
+  background-color: #d62828;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(214, 40, 40, 0.4);
+}
+
+/* ================================
+   BOTÃO FLUTUANTE (DESCIDA)
+================================ */
+.btn-flutuante {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 55px;
+  height: 55px;
+  background-color: #e63946;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.btn-flutuante:hover {
+  transform: translateY(3px);
+  background-color: #d62828;
+  box-shadow: 0 6px 20px rgba(214, 40, 40, 0.6);
+}
+
+.btn-flutuante.escondido {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+

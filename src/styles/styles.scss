@@ -1,0 +1,39 @@
+/*
+ * Oficina Serra - Serviços Automotivos
+ * Estrutura de estilos modular SCSS (padrão CEM Angular 21)
+ */
+
+// Custom variables & functions
+@import "./functions";
+@import "./variables";
+@import "./variables-dark";
+
+// Custom mixins
+@import "./mixins/animation";
+@import "./mixins/buttons";
+@import "./mixins/misc";
+
+// Core styles
+@import "./root";
+@import "./reboot";
+@import "./background";
+@import "./misc";
+@import "./helpers";
+@import "./typography";
+@import "./spinner";
+@import "./utilities";
+
+// Layout
+@import "./navbar";
+@import "./layouts";
+
+// Components
+@import "./components/alert";
+@import "./components/buttons";
+@import "./components/cards";
+@import "./components/forms";
+@import "./components/nav";
+
+// Custom overrides
+@import "./custom";
+

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "troca-oleo",
+    "icone": "🔧",
+    "titulo": "Troca de óleo",
+    "descricao": "Troca de óleo lubrificante e filtros de óleo, ar e combustível.",
+    "categoria": "Preventiva",
+    "precoBase": 180,
+    "tempoEstimado": "45 min",
+    "disponivel": true
+  },
+  {
+    "id": "bateria",
+    "icone": "🔋",
+    "titulo": "Bateria",
+    "descricao": "Verificação de carga, diagnóstico de alternador e substituição de baterias automotivas.",
+    "categoria": "Elétrica",
+    "precoBase": 420,
+    "tempoEstimado": "30 min",
+    "disponivel": true
+  },
+  {
+    "id": "freios",
+    "icone": "🚗",
+    "titulo": "Sistema de Freios",
+    "descricao": "Inspeção e manutenção do sistema de freios, troca de pastilhas, discos, fluidos e reparo de pinças.",
+    "categoria": "Segurança",
+    "precoBase": 350,
+    "tempoEstimado": "2 horas",
+    "disponivel": true
+  },
+  {
+    "id": "alinhamento",
+    "icone": "⚙️",
+    "titulo": "Alinhamento",
+    "descricao": "Serviços de alinhamento 3D e verificação da geometria das rodas do veículo.",
+    "categoria": "Preventiva",
+    "precoBase": 120,
+    "tempoEstimado": "1 hora",
+    "disponivel": true
+  },
+  {
+    "id": "pneus",
+    "icone": "🛞",
+    "titulo": "Pneus",
+    "descricao": "Avaliação das condições dos pneus, calibragem, rodízio, montagem e balanceamento.",
+    "categoria": "Segurança",
+    "precoBase": 140,
+    "tempoEstimado": "50 min",
+    "disponivel": true
+  },
+  {
+    "id": "diagnostico",
+    "icone": "🔍",
+    "titulo": "Diagnóstico",
+    "descricao": "Avaliação completa do veículo para identificar possíveis problemas mecânicos e manutenção preventiva.",
+    "categoria": "Preventiva",
+    "precoBase": 160,
+    "tempoEstimado": "1 hora",
+    "disponivel": true
+  },
+  {
+    "id": "transmissao",
+    "icone": "🔧",
+    "titulo": "Transmissão e Embreagem",
+    "descricao": "Troca de kit de embreagem, fluido de câmbio e reparos de câmbio manual ou automático.",
+    "categoria": "Mecânica",
+    "precoBase": 950,
+    "tempoEstimado": "5 horas",
+    "disponivel": true
+  },
+  {
+    "id": "injecao",
+    "icone": "📋",
+    "titulo": "Injeção Eletrônica e Parte Elétrica",
+    "descricao": "Passagem de scanner automotivo para leitura de falhas, conserto de alternador e motor de arranque.",
+    "categoria": "Elétrica",
+    "precoBase": 240,
+    "tempoEstimado": "1h 30min",
+    "disponivel": true
+  },
+  {
+    "id": "suspensao",
+    "icone": "🏎️",
+    "titulo": "Suspensão e Direção",
+    "descricao": "Troca de amortecedores, molas, buchas, pivôs, alinhamento de direção e balanceamento.",
+    "categoria": "Mecânica",
+    "precoBase": 480,
+    "tempoEstimado": "3 horas",
+    "disponivel": true
+  },
+  {
+    "id": "ar-condicionado",
+    "icone": "❄️",
+    "titulo": "Ar-Condicionado Automotivo",
+    "descricao": "Higienização interna, troca de filtro de cabine e recarga de gás refrigerante.",
+    "categoria": "Preventiva",
+    "precoBase": 220,
+    "tempoEstimado": "1h 15min",
+    "disponivel": true
+  },
+  {
+    "id": "revisao",
+    "icone": "🛠️",
+    "titulo": "Revisão Geral Programada",
+    "descricao": "Checklist completo de 40 itens para viagens e revisões periódicas de quilometragem.",
+    "categoria": "Preventiva",
+    "precoBase": 390,
+    "tempoEstimado": "2h 30min",
+    "disponivel": true
+  },
+  {
+    "id": "escapamento",
+    "icone": "💨",
+    "titulo": "Escapamento e Catalisador",
+    "descricao": "Inspeção de vazamentos, soldas e substituição de silenciosos e catalisadores.",
+    "categoria": "Mecânica",
+    "precoBase": 310,
+    "tempoEstimado": "1h 40min",
+    "disponivel": false
+  }
+]
+

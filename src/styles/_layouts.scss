@@ -1,0 +1,176 @@
+/* ================================
+   BANNER
+================================ */
+
+.banner {
+  background: url('/images/imagem2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  min-height: calc(100vh - 85px); /* Faz o banner preencher o espaço restante da tela, cobrindo o fundo branco */
+
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+}
+
+.banner h2 {
+  font-size: 44px;
+  margin-bottom: 15px;
+}
+
+.banner p {
+  max-width: 600px;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+/* ================================
+   SEÇÕES
+================================ */
+
+.section {
+  padding: 70px 0;
+  background-color: white; /* Mantém as seções normais brancas */
+}
+
+/* ================================
+   RODAPÉ / CONTATO
+================================ */
+
+footer {
+  background-color: #f4f5f7; /* Fundo claro e moderno para quebrar o peso da página */
+  color: #333;
+  padding: 80px 0 20px;
+  scroll-margin-top: 85px;
+  border-top: 1px solid #eaeaea;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr; /* Coluna da logo/descrição um pouco mais larga */
+  gap: 40px;
+  text-align: left; /* Alinhamento à esquerda fica muito mais premium */
+  margin-bottom: 60px;
+}
+
+.footer-grid h3 {
+  margin-bottom: 20px;
+  color: #111; /* Preto forte para contraste */
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-grid p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.footer-brand p {
+  color: #666;
+}
+
+.footer-copyright {
+  text-align: center;
+  border-top: 1px solid #dddddd;
+  padding-top: 25px;
+  font-size: 13px;
+  color: #888;
+}
+
+/* ================================
+   RESPONSIVIDADE
+   TABLETS
+================================ */
+
+@media (max-width: 800px) {
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  .servicos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================================
+   RESPONSIVIDADE
+   CELULAR
+================================ */
+
+@media (max-width: 600px) {
+  app-navbar,
+  header {
+    position: relative; /* Tira o fixo no celular para não esconder o conteúdo */
+  }
+
+  header {
+    padding: 15px 0;
+  }
+
+  .header-content {
+    text-align: center;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 15px;
+  }
+
+  nav a {
+    font-size: 13px;
+  }
+
+  .nav-cta {
+    padding: 6px 15px;
+  }
+
+  .banner {
+    min-height: 400px;
+    text-align: center;
+  }
+
+  .banner h2 {
+    font-size: 32px;
+  }
+
+  .banner p {
+    font-size: 16px;
+  }
+
+  .servicos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+}
+

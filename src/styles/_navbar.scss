@@ -1,0 +1,90 @@
+/* ================================
+   CABEÇALHO E MENU
+================================ */
+
+app-navbar {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header {
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo h1 {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.logo span {
+  color: #e63946;
+}
+
+.logo h2 {
+  font-size: 12px;
+  font-weight: 400;
+  color: #ccc;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: -3px;
+}
+
+/* ================================
+   MENU
+================================ */
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+nav a {
+  color: #eee;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  color: #e63946;
+}
+
+.nav-cta {
+  background-color: #e63946;
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.nav-cta:hover {
+  background-color: #d62828;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(230, 57, 70, 0.4);
+}
+

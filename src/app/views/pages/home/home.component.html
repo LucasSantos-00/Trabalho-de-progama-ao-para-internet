@@ -1,0 +1,153 @@
+<!-- Banner Inicial -->
+<section id="inicio" class="banner">
+
+  <div class="container banner-content">
+
+    <div>
+      <h2>Seu Carro em Boas Mãos</h2>
+      <p>Serviços Automotivos Rapídos e de qualidade</p>
+      <a href="#orcamento" class="botao"> <!-- Botão de navegação para o orçamento -->
+        Solicitar orçamento
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SERVIÇOS -->
+<section id="servicos" class="section">
+
+  <div class="container">
+
+    <h2 class="titulo">Nossos Serviços</h2>
+
+    <p class="subtitulo">
+      Confira os serviços realizados pela Oficina Serra carregados dinamicamente.
+    </p>
+
+    @if (carregandoServicos) {
+      <div class="estado-assincrono estado-loading" role="status" aria-live="polite">
+        <div class="loading-spinner"></div>
+        <p>Carregando catálogo de serviços...</p>
+      </div>
+    } @else if (erroServicos) {
+      <div class="estado-assincrono estado-erro" role="alert">
+        <h3>Erro ao carregar serviços</h3>
+        <p>{{ erroServicos }}</p>
+        <button type="button" class="botao" (click)="carregarServicos()">
+          Tentar novamente
+        </button>
+      </div>
+    } @else {
+      <!-- Consulta, Filtro, Ordenação e Resumo Calculado dos Serviços -->
+      <div class="servicos-controles">
+        <div class="controle-campo">
+          <label for="buscaServico">Buscar serviço</label>
+          <input
+            id="buscaServico"
+            type="search"
+            [(ngModel)]="termoBusca"
+            (ngModelChange)="aplicarFiltros()"
+            placeholder="Ex.: freios, óleo, bateria..."
+          >
+        </div>
+
+        <div class="controle-campo">
+          <label for="filtroCategoria">Categoria</label>
+          <select
+            id="filtroCategoria"
+            [(ngModel)]="categoriaSelecionada"
+            (ngModelChange)="aplicarFiltros()"
+          >
+            <option value="">Todas as categorias</option>
+            @for (cat of categorias; track cat) {
+              <option [value]="cat">{{ cat }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="controle-campo">
+          <label for="ordenacaoServicos">Ordenar por</label>
+          <select
+            id="ordenacaoServicos"
+            [(ngModel)]="ordenacao"
+            (ngModelChange)="aplicarFiltros()"
+          >
+            <option value="padrao">Padrão</option>
+            <option value="nome-asc">Nome (A–Z)</option>
+            <option value="preco-asc">Menor preço</option>
+            <option value="preco-desc">Maior preço</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="servicos-resumo" aria-live="polite">
+        <span><strong>Exibindo:</strong> {{ resumoServicos.total }} serviço(s)</span>
+        <span><strong>Disponíveis agora:</strong> {{ resumoServicos.disponiveis }}</span>
+        <span><strong>Preço médio estimado:</strong> R$ {{ resumoServicos.precoMedio | number:'1.2-2' }}</span>
+      </div>
+
+      @if (servicosFiltrados.length === 0) {
+        <div class="estado-assincrono">
+          <p>Nenhum serviço encontrado para os filtros informados.</p>
+          <button type="button" class="botao" (click)="limparFiltrosServicos()">
+            Limpar filtros
+          </button>
+        </div>
+      } @else {
+        <div class="servicos-grid">
+          <!-- Foi utilizado a tag "article" para criar cartões individuais -->
+          @for (servico of servicosFiltrados; track servico.id) {
+            <article
+              class="card servico-card"
+              [class.indisponivel]="!servico.disponivel"
+              appCardHover
+              tabindex="0"
+              (click)="selecionarServicoParaOrcamento(servico)"
+              (keydown.enter)="selecionarServicoParaOrcamento(servico)"
+            >
+              <div class="servico-topo">
+                <div class="icone">{{ servico.icone }}</div>
+                <span class="badge-categoria">{{ servico.categoria }}</span>
+              </div>
+              <h3>{{ servico.titulo }}</h3>
+              <p>{{ servico.descricao }}</p>
+              <div class="servico-rodape">
+                <span class="preco-base">A partir de <strong>R$ {{ servico.precoBase | number:'1.2-2' }}</strong></span>
+                <span class="tempo-estimado">⏱ {{ servico.tempoEstimado }}</span>
+              </div>
+              <div class="servico-status" [class.status-off]="!servico.disponivel">
+                {{ servico.disponivel ? 'Disponível para agendamento' : 'Sob consulta / Indisponível' }}
+              </div>
+            </article>
+          }
+        </div>
+      }
+    }
+
+  </div>
+
+</section>
+
+
+<!-- Formulário e Gerenciamento de Orçamentos -->
+<section id="orcamento" class="section formulario-section">
+
+  <div class="container">
+
+    <h2 class="titulo">Solicite um Orçamento</h2>
+
+    <p class="subtitulo">
+      Preencha o formulário abaixo para cadastrar, consultar, editar ou gerenciar suas solicitações.
+    </p>
+
+    <app-formulario
+      [servicosCarregados]="servicos"
+      [servicoPreSelecionado]="servicoSelecionadoParaOrcamento"
+    ></app-formulario>
+
+  </div>
+
+</section>

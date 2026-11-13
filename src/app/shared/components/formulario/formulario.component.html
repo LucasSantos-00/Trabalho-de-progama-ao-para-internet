@@ -1,0 +1,308 @@
+<form id="formularioOrcamento" (ngSubmit)="onSubmit()" novalidate>
+  @if (idEmEdicao) {
+    <div class="aviso-edicao campo-completo" role="status">
+      Editando solicitação existente. Altere os dados desejados e clique em <strong>Salvar alterações</strong>.
+    </div>
+  }
+
+  <!-- Área para o nome -->
+  <div class="campo">
+    <label for="nome">Nome completo *</label>
+    <input
+      type="text"
+      id="nome"
+      name="nome"
+      [(ngModel)]="dadosFormulario.nome"
+      [class.invalido]="!!camposInvalidos['nome']"
+      [attr.aria-invalid]="!!camposInvalidos['nome']"
+      placeholder="Digite seu nome"
+      required
+    >
+    @if (camposInvalidos['nome']) {
+      <span class="erro-campo">{{ camposInvalidos['nome'] }}</span>
+    }
+  </div>
+
+  <!-- Área para o e-mail -->
+  <div class="campo">
+    <label for="email">E-mail *</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="dadosFormulario.email"
+      [class.invalido]="!!camposInvalidos['email']"
+      [attr.aria-invalid]="!!camposInvalidos['email']"
+      placeholder="exemplo@email.com"
+      required
+    >
+    @if (camposInvalidos['email']) {
+      <span class="erro-campo">{{ camposInvalidos['email'] }}</span>
+    }
+  </div>
+
+  <!-- Área para o telefone -->
+  <div class="campo">
+    <label for="telefone">Telefone (com DDD) *</label>
+    <input
+      type="tel"
+      inputmode="numeric"
+      id="telefone"
+      name="telefone"
+      mask="(00) 00000-0000||(00) 0000-0000"
+      [dropSpecialCharacters]="false"
+      [(ngModel)]="dadosFormulario.telefone"
+      [class.invalido]="!!camposInvalidos['telefone']"
+      [attr.aria-invalid]="!!camposInvalidos['telefone']"
+      placeholder="(27) 99999-9999"
+      required
+    >
+    @if (camposInvalidos['telefone']) {
+      <span class="erro-campo">{{ camposInvalidos['telefone'] }}</span>
+    }
+  </div>
+
+  <!-- Área para o modelo do veículo -->
+  <div class="campo">
+    <label for="veiculo">Veículo *</label>
+    <input
+      type="text"
+      id="veiculo"
+      name="veiculo"
+      [(ngModel)]="dadosFormulario.veiculo"
+      [class.invalido]="!!camposInvalidos['veiculo']"
+      [attr.aria-invalid]="!!camposInvalidos['veiculo']"
+      placeholder="Ex.: Renault Kwid 2020"
+      required
+    >
+    @if (camposInvalidos['veiculo']) {
+      <span class="erro-campo">{{ camposInvalidos['veiculo'] }}</span>
+    }
+  </div>
+
+  <!-- Área para escolher o serviço -->
+  <div class="campo">
+    <label for="servico">Serviço desejado *</label>
+    <select
+      id="servico"
+      name="servico"
+      [(ngModel)]="dadosFormulario.servico"
+      [class.invalido]="!!camposInvalidos['servico']"
+      [attr.aria-invalid]="!!camposInvalidos['servico']"
+      required
+    >
+      <option value="">Qual serviço deseja?</option>
+      @for (opcao of opcoesServico; track opcao.valor) {
+        <option [value]="opcao.valor">
+          {{ opcao.label }}@if (opcao.precoBase) { (R$ {{ opcao.precoBase }}) }
+        </option>
+      }
+    </select>
+    @if (camposInvalidos['servico']) {
+      <span class="erro-campo">{{ camposInvalidos['servico'] }}</span>
+    }
+  </div>
+
+  <!-- Marcar uma data (Segunda a Sábado) -->
+  <div class="campo">
+    <label for="data">Data desejada (Seg - Sáb)</label>
+    <input
+      type="date"
+      id="data"
+      name="data"
+      [(ngModel)]="dadosFormulario.data"
+      [min]="dataMinima"
+      [class.invalido]="!!camposInvalidos['data']"
+      [attr.aria-invalid]="!!camposInvalidos['data']"
+    >
+    @if (camposInvalidos['data']) {
+      <span class="erro-campo">{{ camposInvalidos['data'] }}</span>
+    }
+  </div>
+
+  <!-- Descrição do serviço requerido -->
+  <div class="campo campo-completo">
+    <label for="mensagem">
+      Descreva o problema ou Qual Serviço desejado
+      @if (dadosFormulario.servico === 'diagnostico' || dadosFormulario.servico === 'outro') {
+        <span class="badge-obrigatorio"> (obrigatório: mín. 15 caracteres)</span>
+      }
+    </label>
+    <textarea
+      id="mensagem"
+      name="mensagem"
+      rows="4"
+      [(ngModel)]="dadosFormulario.descricao"
+      [class.invalido]="!!camposInvalidos['descricao']"
+      [attr.aria-invalid]="!!camposInvalidos['descricao']"
+      placeholder="Descreva o que precisa ser feito no veículo..."
+    ></textarea>
+    @if (camposInvalidos['descricao']) {
+      <span class="erro-campo">{{ camposInvalidos['descricao'] }}</span>
+    }
+  </div>
+
+  @if (errosValidacao.length > 0) {
+    <div class="resumo-erros campo-completo" role="alert" aria-live="polite">
+      <strong>Verifique os seguintes pontos:</strong>
+      <ul>
+        @for (erro of errosValidacao; track erro) {
+          <li>{{ erro }}</li>
+        }
+      </ul>
+    </div>
+  }
+
+  <div class="acoes-formulario campo-completo">
+    <button type="submit" class="botao" [disabled]="enviando">
+      @if (enviando) {
+        Enviando...
+      } @else if (idEmEdicao) {
+        Salvar alterações
+      } @else {
+        Enviar solicitação
+      }
+    </button>
+
+    @if (idEmEdicao) {
+      <button type="button" class="botao botao-secundario" (click)="cancelarEdicao()">
+        Cancelar edição
+      </button>
+    }
+  </div>
+</form>
+
+<!-- Mensagem dinâmica do formulário -->
+<div
+  id="mensagemSucesso"
+  class="mensagem-sucesso"
+  role="status"
+  aria-live="polite"
+  [style.display]="mensagemVisivel ? 'block' : 'none'"
+  [style.backgroundColor]="tipoMensagem === 'sucesso' ? '#d4edda' : '#f8d7da'"
+  [style.color]="tipoMensagem === 'sucesso' ? '#155724' : '#721c24'"
+>{{ mensagemTexto }}</div>
+
+<!-- GERENCIAMENTO DE REGISTROS (CRUD) + CONSULTA + RESUMO CALCULADO -->
+<section class="painel-orcamentos" aria-label="Solicitações de orçamento cadastradas">
+  <div class="painel-cabecalho">
+    <div>
+      <h3>Orçamentos Registrados</h3>
+      <p>Consulte, filtre, ordene, edite ou exclua as solicitações sem recarregar a página.</p>
+    </div>
+  </div>
+
+  <!-- Resumo Calculado -->
+  <div class="resumo-grid" aria-live="polite">
+    <div class="resumo-card">
+      <span class="resumo-label">Total de Orçamentos</span>
+      <strong class="resumo-valor" id="resumoTotal">{{ resumo.totalRegistros }}</strong>
+    </div>
+    <div class="resumo-card">
+      <span class="resumo-label">Valor Total Estimado</span>
+      <strong class="resumo-valor" id="resumoSoma">R$ {{ resumo.valorTotalEstimado | number:'1.2-2' }}</strong>
+    </div>
+    <div class="resumo-card">
+      <span class="resumo-label">Ticket Médio Estimado</span>
+      <strong class="resumo-valor" id="resumoMedia">R$ {{ resumo.valorMedioEstimado | number:'1.2-2' }}</strong>
+    </div>
+  </div>
+
+  <!-- Busca, Filtro e Ordenação -->
+  <div class="filtros-orcamentos">
+    <div class="campo">
+      <label for="buscaOrcamento">Buscar na lista</label>
+      <input
+        id="buscaOrcamento"
+        type="search"
+        [(ngModel)]="termoBusca"
+        (ngModelChange)="aplicarFiltrosEOrdenacao()"
+        placeholder="Buscar por cliente, veículo ou serviço..."
+      >
+    </div>
+
+    <div class="campo">
+      <label for="filtroServicoLista">Filtrar por serviço</label>
+      <select
+        id="filtroServicoLista"
+        [(ngModel)]="filtroServico"
+        (ngModelChange)="aplicarFiltrosEOrdenacao()"
+      >
+        <option value="">Todos os serviços</option>
+        @for (opcao of opcoesServico; track opcao.valor) {
+          <option [value]="opcao.valor">{{ opcao.label }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="ordenacaoLista">Ordenar por</label>
+      <select
+        id="ordenacaoLista"
+        [(ngModel)]="ordenacao"
+        (ngModelChange)="aplicarFiltrosEOrdenacao()"
+      >
+        <option value="recentes">Mais recentes</option>
+        <option value="nome-asc">Cliente (A–Z)</option>
+        <option value="valor-asc">Menor valor</option>
+        <option value="valor-desc">Maior valor</option>
+        <option value="data-asc">Data desejada</option>
+      </select>
+    </div>
+  </div>
+
+  @if (registros.length === 0) {
+    <div class="lista-vazia">
+      Nenhuma solicitação de orçamento cadastrada ainda. Preencha o formulário acima para adicionar o primeiro registro.
+    </div>
+  } @else if (registrosFiltrados.length === 0) {
+    <div class="lista-vazia">
+      <p>Nenhum orçamento encontrado para os filtros aplicados.</p>
+      <button type="button" class="botao botao-secundario" (click)="limparFiltrosLista()">
+        Limpar filtros
+      </button>
+    </div>
+  } @else {
+    <div class="orcamentos-lista">
+      @for (item of registrosFiltrados; track item.id) {
+        <article class="orcamento-item" [class.em-edicao]="idEmEdicao === item.id">
+          <div class="orcamento-info">
+            <div class="orcamento-topo">
+              <h4>{{ item.nome }}</h4>
+              <span class="orcamento-servico-badge">{{ item.servicoLabel }}</span>
+              <span class="orcamento-valor">R$ {{ item.valorEstimado | number:'1.2-2' }}</span>
+            </div>
+            <p class="orcamento-detalhes">
+              <strong>Veículo:</strong> {{ item.veiculo }} |
+              <strong>Tel:</strong> {{ item.telefone }} |
+              <strong>E-mail:</strong> {{ item.email }}
+              @if (item.data) {
+                | <strong>Data:</strong> {{ item.data }}
+              }
+            </p>
+            @if (item.descricao) {
+              <p class="orcamento-descricao">{{ item.descricao }}</p>
+            }
+          </div>
+
+          <div class="orcamento-acoes">
+            <button
+              type="button"
+              class="btn-acao btn-editar"
+              (click)="iniciarEdicao(item)"
+            >
+              Editar
+            </button>
+            <button
+              type="button"
+              class="btn-acao btn-excluir"
+              (click)="excluirRegistro(item.id)"
+            >
+              Excluir
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>
