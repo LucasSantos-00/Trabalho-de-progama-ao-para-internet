@@ -140,13 +140,20 @@
     <h2 class="titulo">Solicite um Orçamento</h2>
 
     <p class="subtitulo">
-      Preencha o formulário abaixo para cadastrar, consultar, editar ou gerenciar suas solicitações.
+      Preencha o formulário abaixo para enviar sua solicitação ou acesse a página dedicada para gerenciar seus orçamentos.
     </p>
 
     <app-formulario
       [servicosCarregados]="servicos"
       [servicoPreSelecionado]="servicoSelecionadoParaOrcamento"
+      [exibirListaCrud]="false"
     ></app-formulario>
+
+    <div style="text-align: center; margin-top: 24px;">
+      <a routerLink="/orcamentos" class="botao botao-secundario">
+        Gerenciar Orçamentos Salvos →
+      </a>
+    </div>
 
   </div>
 

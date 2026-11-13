@@ -13,6 +13,10 @@ export const routes: Routes = [
         loadChildren: () => import('./views/pages/home/home.routes')
       },
       {
+        path: 'orcamentos',
+        loadChildren: () => import('./views/pages/orcamentos/orcamentos.routes')
+      },
+      {
         path: 'inicio',
         redirectTo: '',
         pathMatch: 'full'

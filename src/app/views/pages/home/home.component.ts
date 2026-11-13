@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ServicoService } from '../../../core/services/servicoService/servico.service';
 import { ServicoItem, ServicosResumo } from '../../../core/types/servico.type';
 import { CardHoverDirective } from '../../../core/directives/card-hover.directive';
@@ -11,6 +12,7 @@ import { FormularioComponent } from '../../../shared/components/formulario/formu
   imports: [
     CommonModule,
     FormsModule,
+    RouterLink,
     CardHoverDirective,
     FormularioComponent
   ],

@@ -1,0 +1,42 @@
+<section class="section orcamentos-page">
+  <div class="container">
+    <div class="page-topo">
+      <div>
+        <a routerLink="/" class="voltar-link">← Voltar para a página inicial</a>
+        <h2 class="titulo">Gerenciamento de Orçamentos</h2>
+        <p class="subtitulo">
+          Consulte, filtre, ordene, cadastre, edite ou exclua solicitações de orçamento sem recarregar a página.
+        </p>
+      </div>
+
+      <div class="page-acoes">
+        <button
+          type="button"
+          class="botao"
+          (click)="alternarFormulario()"
+        >
+          {{ mostrarFormulario ? 'Ocultar formulário' : '+ Novo Orçamento' }}
+        </button>
+      </div>
+    </div>
+
+    @if (carregandoServicos) {
+      <div class="estado-carregamento" role="status" aria-live="polite">
+        <div class="spinner"></div>
+        <p>Carregando catálogo de serviços...</p>
+      </div>
+    } @else if (erroServicos) {
+      <div class="estado-erro" role="alert">
+        <p>Não foi possível carregar os serviços de referência ({{ erroServicos }}). O formulário utilizará as opções padrão.</p>
+      </div>
+    }
+
+    <app-formulario
+      [servicosCarregados]="servicos"
+      [exibirFormulario]="mostrarFormulario"
+      [exibirListaCrud]="true"
+      (edicaoIniciada)="aoIniciarEdicao()"
+    ></app-formulario>
+  </div>
+</section>
+

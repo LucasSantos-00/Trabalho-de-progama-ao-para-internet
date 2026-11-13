@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
@@ -26,6 +26,10 @@ export class FormularioComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() servicosCarregados: ServicoItem[] = [];
   @Input() servicoPreSelecionado: string = '';
+  @Input() exibirFormulario: boolean = true;
+  @Input() exibirListaCrud: boolean = true;
+
+  @Output() edicaoIniciada = new EventEmitter<OrcamentoRegistro>();
 
   opcoesServico: ServicoOpcao[] = [];
   dataMinima: string = '';
@@ -178,9 +182,12 @@ export class FormularioComponent implements OnInit, OnChanges, OnDestroy {
       data: registro.data,
       descricao: registro.descricao
     };
+    this.edicaoIniciada.emit(registro);
 
-    const formEl = document.getElementById('formularioOrcamento');
-    formEl?.scrollIntoView?.({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => {
+      const formEl = document.getElementById('formularioOrcamento');
+      formEl?.scrollIntoView?.({ behavior: 'smooth', block: 'center' });
+    });
   }
 
   cancelarEdicao(): void {

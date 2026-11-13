@@ -1,3 +1,4 @@
+@if (exibirFormulario) {
 <form id="formularioOrcamento" (ngSubmit)="onSubmit()" novalidate>
   @if (idEmEdicao) {
     <div class="aviso-edicao campo-completo" role="status">
@@ -171,6 +172,7 @@
     }
   </div>
 </form>
+}
 
 <!-- Mensagem dinâmica do formulário -->
 <div
@@ -184,6 +186,7 @@
 >{{ mensagemTexto }}</div>
 
 <!-- GERENCIAMENTO DE REGISTROS (CRUD) + CONSULTA + RESUMO CALCULADO -->
+@if (exibirListaCrud) {
 <section class="painel-orcamentos" aria-label="Solicitações de orçamento cadastradas">
   <div class="painel-cabecalho">
     <div>
@@ -306,3 +309,4 @@
     </div>
   }
 </section>
+}
